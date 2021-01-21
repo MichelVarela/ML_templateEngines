@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('partials/head')  %> 
+<body>
+    <%- include('partials/header')  %>
+    
+    <div class="container">
+        <section class="row">
+            <div class="titulo col-12">
+                <% producto.forEach(items=>{ %> 
+                    <h2>
+                        Detalle del producto:
+                        <%= items.name %> 
+                    </h2>
+                </div>
+                <div class="col-12">
+                    <div class="contain text-left">
+                        <div class="row box detailProduct">
+                            <div class="col-12 col-lg-8 imgContainer">
+                                <figure class="text-center">
+                                    <img src="/images/products/<%= items.image %> " alt="" class="img-fluid">
+                                </figure>
+                                <p>
+                                    <%= items.description %> 
+                                </p>
+                            </div>
+                            <div class="col-12 col-lg-4 data-product">
+                                <h3 class="name">
+                                    <%= items.name %> 
+                                </h3>
+                                <span class="descuento">
+                                    <%= items.discount == 0 ? null : '$' + toThousand(items.price) %>  
+                                </span>
+                                <strong>
+                                    <%= items.discount == 0 ? null : ' / ' + items.discount + '% OFF' %>
+                                </strong>
+                                <h2 class="price">
+                                    $<%= toThousand(items.price - parseInt(items.price * items.discount / 100)) %>
+                                </h2> 
+                                <p class="icons"><i class="fas fa-credit-card mr-3 my-4"></i>Pagá en 12 cuotas sin interés</p>
+                                <p class="icons"><i class="fas fa-store mr-3 my-4"></i>Retiro gratis en locales del vendedor</p>
+                                <button>Comprar ahora</button>
+                                <% }) %>   
+                            </div>      
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        
+        <%- include('partials/footer')  %>
+        <%- include('partials/scripts') %>  
+    </body>
+    </html>
